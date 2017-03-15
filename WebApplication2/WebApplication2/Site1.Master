@@ -1,0 +1,46 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="WebApplication2.Site1" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link rel="Stylesheet" href="\css\materialize\css\materialize.min.css" />
+    <style>
+        nav
+        {
+            color: #005c42;
+            background-color: white;
+        }
+        
+        nav ul a
+        {
+            color: #005c42;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo"> <img alt="logo "  src="img/first-premiere-logo.gif" /></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/register.aspx">Register</a></li>
+        <li><a href="/deposit.aspx">Deposit</a></li>
+        <li><a href="/withdraw.aspx">Withdraw</a></li>
+        <li><a href="/details.aspx">Account Details</a></li>
+        <li><a href="/transfer.aspx">Transfer Amount </a></li>
+        <li><a href="/buy.aspx">Buy Online</a></li>
+      </ul>
+    </div>
+  </nav>
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+        <script src="\js\jquery-3.1.1.min.js"></script>
+        <script src="\css\materialize\js\materialize.min.js"></script>
+    </div>
+    </form>
+</body>
+</html>
