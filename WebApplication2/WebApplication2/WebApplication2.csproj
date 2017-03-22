@@ -50,6 +50,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ASPNETDB.MDF" />
+    <Content Include="App_Data\aspnetdb_log.ldf">
+      <DependentUpon>ASPNETDB.MDF</DependentUpon>
+    </Content>
     <Content Include="Buy.aspx" />
     <Content Include="css\materialize\css\materialize.css" />
     <Content Include="css\materialize\css\materialize.min.css" />
@@ -60,6 +64,7 @@
     <Content Include="Home.aspx" />
     <Content Include="img\first-premiere-logo.gif" />
     <Content Include="js\jquery-3.1.1.min.js" />
+    <Content Include="open.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="Transfer.aspx" />
     <Content Include="Web.config" />
@@ -101,6 +106,13 @@
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
+    <Compile Include="open.aspx.cs">
+      <DependentUpon>open.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="open.aspx.designer.cs">
+      <DependentUpon>open.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
@@ -130,6 +142,7 @@
     <Compile Include="Transfer.aspx.designer.cs">
       <DependentUpon>Transfer.aspx</DependentUpon>
     </Compile>
+    <Compile Include="User.cs" />
     <Compile Include="Withdraw.aspx.cs">
       <DependentUpon>Withdraw.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
