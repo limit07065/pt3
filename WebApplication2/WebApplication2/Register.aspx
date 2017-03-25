@@ -6,13 +6,14 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
-        DeleteCommand="DELETE FROM [account] WHERE [id] = @id" InsertCommand="INSERT INTO [account] ([full_name], [nric], [username], [password], [registration_date], [phone]) VALUES (@full_name, @nric, @username, @password, @registration_date, @phone)"
+        DeleteCommand="DELETE FROM [account] WHERE [id] = @id" InsertCommand="INSERT INTO [account] ([first_name], [last_name], [nric], [username], [password], [registration_date], [phone]) VALUES (@first_name, @last_name, @nric, @username, @password, @registration_date, @phone)"
         SelectCommand="SELECT * FROM [account]" UpdateCommand="UPDATE [account] SET [full_name] = @full_name, [nric] = @nric, [username] = @username, [password] = @password, [registration_date] = @registration_date, [phone] = @phone WHERE [id] = @id">
         <DeleteParameters>
             <asp:Parameter Name="id" Type="Int32" />
         </DeleteParameters>
         <InsertParameters>
-            <asp:Parameter Name="full_name" Type="String" />
+            <asp:Parameter Name="first_name" Type="String" />
+            <asp:Parameter Name="last_name" Type="String" />
             <asp:Parameter Name="nric" Type="String" />
             <asp:Parameter Name="username" Type="String" />
             <asp:Parameter Name="password" Type="String" />
@@ -38,17 +39,32 @@
                         Register</h4>
                 </li>
                 <li>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <asp:TextBox ID="fullname" runat="server"></asp:TextBox>
+                    <div class="container-fluid">
+                        <div class="input-field col s6">
+                            <asp:TextBox ID="firstname" runat="server"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="This is required."
-                                ControlToValidate="fullname" ForeColor="red"></asp:RequiredFieldValidator>
-                            <label for="first_name">
-                                Full Name</label>
-                            <asp:CustomValidator ID="CustomValidator1" OnServerValidate="FullnameValidate" ControlToValidate="fullname"
-                                runat="server" ErrorMessage="Name cannot contain numbers">
-                            
-                            </asp:CustomValidator>
+                                ControlToValidate="firstname" ForeColor="red"></asp:RequiredFieldValidator>
+                            <label for="firstname">
+                                First Name</label>
+                            <label for="firstname">
+                            <asp:CustomValidator ID="CustomValidator1" OnServerValidate="FullnameValidate" ControlToValidate="firstname"
+                                runat="server" ErrorMessage="Name cannot contain numbers" ForeColor="Red" 
+                                Display="Dynamic"></asp:CustomValidator>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="input-field col s6">
+                            <asp:TextBox ID="lastname" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="This is required."
+                                ControlToValidate="lastname" ForeColor="red"></asp:RequiredFieldValidator>
+                            <label for="lastname">
+                                Last Name</label>
+                            <label for="lastname">
+                            <asp:CustomValidator ID="CustomValidator2" OnServerValidate="FullnameValidate" ControlToValidate="lastname"
+                                runat="server" ErrorMessage="Name cannot contain numbers" ForeColor="Red" 
+                                Display="Dynamic"></asp:CustomValidator>
+                            </label>
                         </div>
                     </div>
                     <div class="row">
@@ -56,11 +72,13 @@
                             <asp:TextBox ID="nric" runat="server"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="This is required."
                                 ControlToValidate="nric" ForeColor="red"></asp:RequiredFieldValidator>                           
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ControlToValidate="nric"
-                                ValidationExpression="\d{12}" Display="Static" EnableClientScript="false" ErrorMessage="NRIC must be 12 numeric digits"
-                                runat="server" />
                             <label for="nric">
                                 NRIC</label>
+                            <label for="nric">
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ControlToValidate="nric"
+                                ValidationExpression="\d{12}" Display="Static" EnableClientScript="false" ErrorMessage="NRIC must be 12 numeric digits"
+                                runat="server" ForeColor="Red" />
+                            </label>
                         </div>
                     </div>
                     <div class="row">
@@ -88,8 +106,12 @@
                                 ControlToValidate="cpassword" ForeColor="red"></asp:RequiredFieldValidator>
                             <label for="cpassword">
                                 Confirm Password</label>
+                            <label for="cpassword">
                             <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="cpassword"
-                                CssClass="" ControlToCompare="password" ErrorMessage="No Match" ToolTip="Password must be the same" />
+                                CssClass="" ControlToCompare="password" 
+                                ErrorMessage="Password Does Not Match" ToolTip="Password must be the same" 
+                                ForeColor="Red" />
+                            </label>
                         </div>
                     </div>
                     <div class="row">
@@ -97,11 +119,13 @@
                             <asp:TextBox ID="email" runat="server"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="This is required."
                                 ControlToValidate="email" ForeColor="red"></asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="email"
-                                ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" runat="server"
-                                ErrorMessage="Invalid email format"></asp:RegularExpressionValidator>
                             <label for="email">
                                 Email</label>
+                       
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="email"
+                                ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" runat="server"
+                                ErrorMessage="Invalid email format" ForeColor="Red"></asp:RegularExpressionValidator>
+                            
                         </div>
                     </div>
                     <div class="row">
@@ -109,16 +133,16 @@
                             <asp:TextBox ID="phone" runat="server"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="This is required."
                                 ControlToValidate="phone" ForeColor="red"></asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" ControlToValidate="phone"
-                                ValidationExpression="^\d{10,11}$" runat="server"
-                                ErrorMessage="Invalid phone number (Enter without '-')"></asp:RegularExpressionValidator>
                             <label for="phone">
                                 Phone</label>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" ControlToValidate="phone"
+                                ValidationExpression="^\d{10,11}$" runat="server"
+                                ErrorMessage="Invalid phone number (Enter without '-')" ForeColor="Red"></asp:RegularExpressionValidator>
                         </div>
                     </div>
                     <div class="row">
                         <p class="col">
-                            <input type="checkbox" name='tac' id="tac" required />
+                            <input type="checkbox" name='tac' id="tac" required="true" />
                             <label for="tac">
                                 I agree to all terms and conditions.</label>
                             <br />
@@ -128,8 +152,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <asp:Button ID="Button1" runat="server" Text="Submit" CssClass="waves-effect waves-light btn"
-                                OnClick="Button1_Click" />
+                            <asp:linkbutton ID="btnSubmit" runat="server" Text="Submit" CssClass="waves-effect waves-light btn" OnClick="btnSubmit_Click" />
                         </div>
                     </div>
                 </li>

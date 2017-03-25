@@ -13,8 +13,18 @@ namespace WebApplication2
         {
             if (!IsPostBack)
             {
-                first_name.Text = Session["first_name"].ToString();
-                nric.Text = Session["nric"].ToString();
+                if (Session["first_name"] != null)
+                {
+                    lblAccNo.Text = Session["id"].ToString();
+                    lblFirstName.Text = Session["first_name"].ToString();
+                    lblLastName.Text = Session["last_name"].ToString();
+                    lblNRIC.Text = Session["nric"].ToString();
+                    lblRegDate.Text = ((DateTime)Session["reg_date"]).ToString("dd-MMM-yyyy");
+                    lblPhoneNo.Text = Session["phone"].ToString();
+                    lblAmount.Text = String.Format(new System.Globalization.CultureInfo("ms-MY"), "{0:C}", Convert.ToDouble(Session["amount"]));
+                }
+                else
+                    Response.Redirect("/Home.aspx");
             }
         }
     }

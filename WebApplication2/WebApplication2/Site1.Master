@@ -3,7 +3,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <link rel="Stylesheet" href="\css\materialize\css\materialize.min.css" />
@@ -24,20 +23,30 @@
     <form id="form1" runat="server">
     <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo"> <img alt="logo "  src="img/first-premiere-logo.gif" /></a>
+        <% if (Session["first_name"] == null) { %>
+             <a href="/Home.aspx" class="brand-logo"> <img alt="logo "  src="img/first-premiere-logo.gif" /></a>
+        <% } else { %>
+             <a href="/Details.aspx" class="brand-logo"> <img alt="logo "  src="img/first-premiere-logo.gif" /></a>
+        <% } %>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="/register.aspx">Register</a></li>
-        <li><a href="/deposit.aspx">Deposit</a></li>
-        <li><a href="/withdraw.aspx">Withdraw</a></li>
-        <li><a href="/details.aspx">Account Details</a></li>
-        <li><a href="/transfer.aspx">Transfer Amount </a></li>
-        <li><a href="/buy.aspx">Buy Online</a></li>
+
+        <% if (Session["first_name"] == null){ %>
+            <li><a href="/Home.aspx">Login</a></li>
+            <li><a href="/register.aspx">Register</a></li>
+        <% } else { %>
+            <li><a href="/details.aspx">Welcome, <%= Session["first_name"] %></a></li>
+            <li><a href="/deposit.aspx">Deposit</a></li>
+            <li><a href="/withdraw.aspx">Withdraw</a></li>
+            <li><a href="/transfer.aspx">Transfer Amount </a></li>
+            <li><a href="/buy.aspx">Buy Online</a></li>
+            <li><asp:LinkButton id="lbLogout" runat="server" onclick="lbLogout_Click">Logout</asp:LinkButton></li>
+        <% } %>
       </ul>
     </div>
   </nav>
     <div>
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        </asp:ContentPlaceHolder>
+        <asp:contentplaceholder id="ContentPlaceHolder1" runat="server">
+        </asp:contentplaceholder>
         <script src="\js\jquery-3.1.1.min.js"></script>
         <script src="\css\materialize\js\materialize.min.js"></script>
     </div>

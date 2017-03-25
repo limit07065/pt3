@@ -5,52 +5,61 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace WebApplication2
 {
     public partial class Home : System.Web.UI.Page
     {
+        protected static string ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
-        }
-
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            String login, pw;
-
-
+            if (!IsPostBack) 
+            {   // Check if logged in
+                if (Session["first_name"] != null)
+                    Response.Redirect("/Details.aspx");
+            }
         }
 
         protected void OnLoggingIn(object sender, System.Web.UI.WebControls.LoginCancelEventArgs e)
         {
-            ArrayList accountList = (ArrayList)Session["accountList"];
-            Session["user"] = null;
-            for (int i = 0; i < accountList.Count; i++)
+            string query = "SELECT * FROM account WHERE username = @username AND password = @password";
+
+            TextBox UserName = Login1.FindControl("UserName") as TextBox;
+            TextBox Password = Login1.FindControl("Password") as TextBox;
+
+            using(SqlConnection con = new SqlConnection(ConnectionString))
             {
-                if (Login1.UserName.Equals(((User)accountList[i]).loginID))
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@username", UserName.Text);
+                cmd.Parameters.AddWithValue("@password", Password.Text);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    if (Login1.Password.Equals(((User)accountList[i]).password))
+                    while (reader.Read())
                     {
-                        User user = (User)accountList[i];
-                       Session["user"] = user;
+                        Session["id"] = reader["id"];
+                        Session["first_name"] = reader["first_name"];
+                        Session["last_name"] = reader["last_name"];
+                        Session["nric"] = reader["nric"];
+                        Session["reg_date"] = reader["registration_date"];
+                        Session["phone"] = reader["phone"];
+                        Session["amount"] = reader["amount"];
+                        Response.Redirect("/Details.aspx");
                     }
-
                 }
+            }
 
-            }
-            if (Session["user"] == null)
-            {
-                Login1.InstructionText = "Invalid ID or password.";
-            }
-            else
-            {
-                Response.Redirect("/Details.aspx");
-            }
-            
-            
+            // When RememberMe checkbox is checked, set session timeout to 525600 minutes (1 year), longest period available for ASP .NET
+            CheckBox rmbMe = Login1.FindControl("RememberMe") as CheckBox;
+            if (rmbMe.Checked)
+                Session.Timeout = 525600; 
 
-            
         }
 
         protected void OnLoginError(object sender, EventArgs e)
