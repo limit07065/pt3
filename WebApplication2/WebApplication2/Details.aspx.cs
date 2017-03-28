@@ -11,6 +11,9 @@ namespace WebApplication2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if ( Session["full_name"] == null )
+                Response.Redirect("/Home.aspx");
+
             if (!IsPostBack)
             {
                 if (Session["full_name"] != null)
@@ -20,10 +23,8 @@ namespace WebApplication2
                     lblNRIC.Text = Session["nric"].ToString();
                     lblRegDate.Text = ((DateTime)Session["reg_date"]).ToString("dd-MMM-yyyy");
                     lblPhoneNo.Text = Session["phone"].ToString();
-                    lblAmount.Text = String.Format(new System.Globalization.CultureInfo("ms-MY"), "{0:C}", Convert.ToDouble(Session["amount"]));
+                    lblAmount.Text = String.Format(new System.Globalization.CultureInfo("ms-MY"), "{0:C}", Convert.ToDouble(Session["balance"]));
                 }
-                else
-                    Response.Redirect("/Home.aspx");
             }
         }
     }

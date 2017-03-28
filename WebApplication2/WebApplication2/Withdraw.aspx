@@ -6,7 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:SqlDataSource ID="sqlAccount" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
-        SelectCommand="SELECT * FROM [account] WHERE ([owner] = @owner)">
+        SelectCommand="SELECT * FROM [account] WHERE ([id] = @owner)">
         <SelectParameters>
             <asp:SessionParameter Name="owner" SessionField="id" Type="Int32" />
         </SelectParameters>

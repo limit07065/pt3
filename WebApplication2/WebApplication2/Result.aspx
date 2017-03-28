@@ -3,5 +3,5 @@
 <title>Success</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<h4>Deposit Success</h4>
+<h4>Transaction Success</h4>
 </asp:Content>

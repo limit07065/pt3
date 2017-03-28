@@ -11,7 +11,8 @@ namespace WebApplication2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["full_name"] == null)
+                Response.Redirect("/Home.aspx");
         }
 
         protected void Button1_Click(object sender, EventArgs e)
