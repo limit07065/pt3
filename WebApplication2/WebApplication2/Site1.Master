@@ -35,10 +35,11 @@
             <li><a href="/register.aspx">Register</a></li>
         <% } else { %>
             <li><a href="/details.aspx">Welcome, <%= Session["full_name"] %></a></li>
+            <li><a href="/open.aspx">Open Account</a></li>
             <li><a href="/deposit.aspx">Deposit</a></li>
             <li><a href="/withdraw.aspx">Withdraw</a></li>
             <li><a href="/transfer.aspx">Transfer Amount </a></li>
-            <li><a href="/buy.aspx">Buy Online</a></li>
+          <!--  <li><a href="/buy.aspx">Buy Online</a></li>-->
             <li><asp:LinkButton id="lbLogout" runat="server" onclick="lbLogout_Click">Logout</asp:LinkButton></li>
         <% } %>
       </ul>
@@ -49,6 +50,11 @@
         </asp:contentplaceholder>
         <script src="\js\jquery-3.1.1.min.js"></script>
         <script src="\css\materialize\js\materialize.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('select').material_select();
+            });
+        </script>
     </div>
     </form>
 </body>

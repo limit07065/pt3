@@ -22,20 +22,21 @@
                 </li>
                 <li>
                     <div class="row">
-                        <div class="col s10 hoverable" style="margin: 10px">
-                            <h4>
-                                <span>Choose an account: </span>
-                            </h4>
+                        <div class="col s3 input-field offset-s1">
+                            <label for="ddlAccount">
+                                Choose an account:
+                            </label>
+                        </div>
+                        <div class="input-field col s6  ">
                             <asp:DropDownList ID="ddlAccount" runat="server" DataSourceID="sqlAccount" DataTextField="id"
                                 DataValueField="id">
                             </asp:DropDownList>
                         </div>
-                        <div class="input-field col s12">
+                        <div class="input-field col s9 offset-s1">
                             <asp:TextBox ID="tbAmount" runat="server">
                             </asp:TextBox>
                             <label for="first_name">
-                                Amount to withdraw
-                            </label>
+                                Amount to withdraw</label>
                             <asp:CustomValidator ID="CustomValidator1" runat="server" OnServerValidate="AmountValidate"
                                 ControlToValidate="tbAmount" ErrorMessage="Invalid input" ForeColor="Red" Display="Dynamic">
                             </asp:CustomValidator>

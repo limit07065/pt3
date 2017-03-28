@@ -34,13 +34,7 @@ namespace WebApplication2
                 double balance = Convert.ToDouble(drv["balance"]);
                 double amount = Convert.ToDouble(tbAmount.Text);
 
-                //check if balance is greater than withdrawal amount
-                if (balance < amount)
-                {
-                    //fail message
-                }
-                else
-                {
+               
 
                     balance -= amount;
                     using (SqlConnection con = new SqlConnection(ConnectionString))
@@ -48,7 +42,7 @@ namespace WebApplication2
                         con.Open();
 
                         SqlCommand cmd = new SqlCommand(query, con);
-                        cmd.Parameters.AddWithValue("@type", "1");
+                        cmd.Parameters.AddWithValue("@type", "2");
                         cmd.Parameters.AddWithValue("@source", accountID);
                         cmd.Parameters.AddWithValue("@amount", tbAmount.Text);
                         cmd.Parameters.AddWithValue("@source_balance", balance.ToString());
@@ -70,15 +64,15 @@ namespace WebApplication2
                    
 
 
-                }
+               
                 Response.Redirect("/Result.aspx");
             }
         }
 
         protected void AmountValidate(object source, ServerValidateEventArgs args)
         {
-            sqlAccount.SelectParameters.Add("sid", ddlAccount.SelectedValue);
-            sqlAccount.SelectCommand = "SELECT * FROM account WHERE [id] = @sid";
+           // sqlAccount.SelectParameters.Add("sid", ddlAccount.SelectedValue);
+          //  sqlAccount.SelectCommand = "SELECT * FROM account WHERE [id] = @sid";
             
             DataView dv = (DataView)sqlAccount.Select(DataSourceSelectArguments.Empty);
             DataRowView drv = dv[0];
