@@ -13,11 +13,10 @@ namespace WebApplication2
         {
             if (!IsPostBack)
             {
-                if (Session["first_name"] != null)
+                if (Session["full_name"] != null)
                 {
                     lblAccNo.Text = Session["id"].ToString();
-                    lblFirstName.Text = Session["first_name"].ToString();
-                    lblLastName.Text = Session["last_name"].ToString();
+                    lblFullName.Text = Session["full_name"].ToString();                    
                     lblNRIC.Text = Session["nric"].ToString();
                     lblRegDate.Text = ((DateTime)Session["reg_date"]).ToString("dd-MMM-yyyy");
                     lblPhoneNo.Text = Session["phone"].ToString();

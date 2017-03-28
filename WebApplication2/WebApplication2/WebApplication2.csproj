@@ -66,6 +66,7 @@
     <Content Include="js\jquery-3.1.1.min.js" />
     <Content Include="open.aspx" />
     <Content Include="Register.aspx" />
+    <Content Include="Result.aspx" />
     <Content Include="Transfer.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -135,6 +136,13 @@
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Result.aspx.cs">
+      <DependentUpon>Result.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Result.aspx.designer.cs">
+      <DependentUpon>Result.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Transfer.aspx.cs">
       <DependentUpon>Transfer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -186,7 +194,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1806</DevelopmentServerPort>
+          <DevelopmentServerPort>1846</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

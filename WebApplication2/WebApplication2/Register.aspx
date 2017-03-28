@@ -6,19 +6,20 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
-        DeleteCommand="DELETE FROM [account] WHERE [id] = @id" InsertCommand="INSERT INTO [account] ([first_name], [last_name], [nric], [username], [password], [registration_date], [phone]) VALUES (@first_name, @last_name, @nric, @username, @password, @registration_date, @phone)"
-        SelectCommand="SELECT * FROM [account]" UpdateCommand="UPDATE [account] SET [full_name] = @full_name, [nric] = @nric, [username] = @username, [password] = @password, [registration_date] = @registration_date, [phone] = @phone WHERE [id] = @id">
+        DeleteCommand="DELETE FROM [customer] WHERE [id] = @id" InsertCommand="INSERT INTO [customer] ([full_name], [nric], [username], [password], [registration_date], [phone], [email]) VALUES (@full_name, @nric, @username, @password, @registration_date, @phone, @email)"
+        SelectCommand="SELECT * FROM [customer]" 
+        UpdateCommand="UPDATE [customer] SET [full_name] = @full_name, [nric] = @nric, [username] = @username, [password] = @password, [registration_date] = @registration_date, [phone] = @phone, [email] = @email WHERE [id] = @id">
         <DeleteParameters>
             <asp:Parameter Name="id" Type="Int32" />
         </DeleteParameters>
         <InsertParameters>
-            <asp:Parameter Name="first_name" Type="String" />
-            <asp:Parameter Name="last_name" Type="String" />
+            <asp:Parameter Name="full_name" Type="String" />            
             <asp:Parameter Name="nric" Type="String" />
             <asp:Parameter Name="username" Type="String" />
             <asp:Parameter Name="password" Type="String" />
             <asp:Parameter Name="registration_date" Type="DateTime" />
             <asp:Parameter Name="phone" Type="String" />
+            <asp:Parameter Name="email" Type="String" />
         </InsertParameters>
         <UpdateParameters>
             <asp:Parameter Name="full_name" Type="String" />
@@ -27,6 +28,7 @@
             <asp:Parameter Name="password" Type="String" />
             <asp:Parameter Name="registration_date" Type="DateTime" />
             <asp:Parameter Name="phone" Type="String" />
+            <asp:Parameter Name="email" Type="String" />
             <asp:Parameter Name="id" Type="Int32" />
         </UpdateParameters>
     </asp:SqlDataSource>
@@ -40,33 +42,20 @@
                 </li>
                 <li>
                     <div class="container-fluid">
-                        <div class="input-field col s6">
-                            <asp:TextBox ID="firstname" runat="server"></asp:TextBox>
+                        <div class="input-field col s12">
+                            <asp:TextBox ID="full_name" runat="server"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="This is required."
-                                ControlToValidate="firstname" ForeColor="red"></asp:RequiredFieldValidator>
-                            <label for="firstname">
-                                First Name</label>
-                            <label for="firstname">
-                            <asp:CustomValidator ID="CustomValidator1" OnServerValidate="FullnameValidate" ControlToValidate="firstname"
+                                ControlToValidate="full_name" ForeColor="red"></asp:RequiredFieldValidator>
+                            <label for="full_name">
+                                Full Name</label>
+                            <label for="full_name">
+                            <asp:CustomValidator ID="CustomValidator1" OnServerValidate="FullnameValidate" ControlToValidate="full_name"
                                 runat="server" ErrorMessage="Name cannot contain numbers" ForeColor="Red" 
                                 Display="Dynamic"></asp:CustomValidator>
                             </label>
                         </div>
                     </div>
-                    <div class="container-fluid">
-                        <div class="input-field col s6">
-                            <asp:TextBox ID="lastname" runat="server"></asp:TextBox>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="This is required."
-                                ControlToValidate="lastname" ForeColor="red"></asp:RequiredFieldValidator>
-                            <label for="lastname">
-                                Last Name</label>
-                            <label for="lastname">
-                            <asp:CustomValidator ID="CustomValidator2" OnServerValidate="FullnameValidate" ControlToValidate="lastname"
-                                runat="server" ErrorMessage="Name cannot contain numbers" ForeColor="Red" 
-                                Display="Dynamic"></asp:CustomValidator>
-                            </label>
-                        </div>
-                    </div>
+                    
                     <div class="row">
                         <div class="input-field col s12">
                             <asp:TextBox ID="nric" runat="server"></asp:TextBox>

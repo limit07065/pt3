@@ -19,14 +19,14 @@ namespace WebApplication2
         {
             if (!IsPostBack) 
             {   // Check if logged in
-                if (Session["first_name"] != null)
+                if (Session["full_name"] != null)
                     Response.Redirect("/Details.aspx");
             }
         }
 
         protected void OnLoggingIn(object sender, System.Web.UI.WebControls.LoginCancelEventArgs e)
         {
-            string query = "SELECT * FROM account WHERE username = @username AND password = @password";
+            string query = "SELECT * FROM customer WHERE username = @username AND password = @password";
 
             TextBox UserName = Login1.FindControl("UserName") as TextBox;
             TextBox Password = Login1.FindControl("Password") as TextBox;
@@ -44,12 +44,11 @@ namespace WebApplication2
                     while (reader.Read())
                     {
                         Session["id"] = reader["id"];
-                        Session["first_name"] = reader["first_name"];
-                        Session["last_name"] = reader["last_name"];
+                        Session["full_name"] = reader["full_name"];
                         Session["nric"] = reader["nric"];
                         Session["reg_date"] = reader["registration_date"];
                         Session["phone"] = reader["phone"];
-                        Session["amount"] = reader["amount"];
+                      //  Session["balance"] = reader["balance"];
                         Response.Redirect("/Details.aspx");
                     }
                 }

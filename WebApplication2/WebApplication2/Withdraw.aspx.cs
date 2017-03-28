@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace WebApplication2
 {
@@ -22,30 +23,73 @@ namespace WebApplication2
         {
             if (Page.IsValid)
             {
-                string query = "UPDATE account SET [amount] = @amount WHERE [id] = @id";
 
-                Session["amount"] = Convert.ToDouble(Session["amount"]) - Convert.ToDouble(tbAmount.Text);
+                string query = "INSERT INTO [transaction] ([type],[source],[amount],[source_balance],[date]) VALUES (@type,@source,@amount,@source_balance, @date)";
 
-                using (SqlConnection con = new SqlConnection(ConnectionString))
+                sqlAccount.SelectParameters.Add("cid", ddlAccount.SelectedValue);
+                sqlAccount.SelectCommand = "SELECT * FROM account WHERE [id] = @cid";
+                DataView dv = (DataView)sqlAccount.Select(DataSourceSelectArguments.Empty);
+                DataRowView drv = dv[0];
+                int accountID = Convert.ToInt32(drv["id"]);
+                double balance = Convert.ToDouble(drv["balance"]);
+                double amount = Convert.ToDouble(tbAmount.Text);
+
+                //check if balance is greater than withdrawal amount
+                if (balance < amount)
                 {
-                    con.Open();
-
-                    SqlCommand cmd = new SqlCommand(query, con);
-                    cmd.Parameters.AddWithValue("@amount", Session["amount"].ToString());
-                    cmd.Parameters.AddWithValue("@id", Session["id"].ToString());
-
-                    cmd.ExecuteNonQuery();
+                    //fail message
                 }
+                else
+                {
+
+                    balance -= amount;
+                    using (SqlConnection con = new SqlConnection(ConnectionString))
+                    {
+                        con.Open();
+
+                        SqlCommand cmd = new SqlCommand(query, con);
+                        cmd.Parameters.AddWithValue("@type", "1");
+                        cmd.Parameters.AddWithValue("@source", accountID);
+                        cmd.Parameters.AddWithValue("@amount", tbAmount.Text);
+                        cmd.Parameters.AddWithValue("@source_balance", balance.ToString());
+                        cmd.Parameters.AddWithValue("@date", DateTime.Now);
+                        cmd.ExecuteNonQuery();
+
+                    }
+
+                    using (SqlConnection con = new SqlConnection(ConnectionString))
+                    {
+                        con.Open();
+                        string query2 = "UPDATE [account] SET [balance] = @balance WHERE [id]= @id";
+                        SqlCommand cmd2 = new SqlCommand(query2, con);
+                        cmd2.Parameters.AddWithValue("@balance", balance);
+                        cmd2.Parameters.AddWithValue("@id", accountID);
+                        cmd2.ExecuteNonQuery();
+                    }
+
+                   
+
+
+                }
+                Response.Redirect("/Result.aspx");
             }
         }
 
         protected void AmountValidate(object source, ServerValidateEventArgs args)
         {
+            sqlAccount.SelectParameters.Add("sid", ddlAccount.SelectedValue);
+            sqlAccount.SelectCommand = "SELECT * FROM account WHERE [id] = @sid";
+            
+            DataView dv = (DataView)sqlAccount.Select(DataSourceSelectArguments.Empty);
+            DataRowView drv = dv[0];
+            int accountID = Convert.ToInt32(drv["id"]);
+            double balance = Convert.ToDouble(drv["balance"]);
+            
             try
             {
-                if (Convert.ToDouble(args.Value) > Convert.ToDouble(Session["amount"]))
+                if (Convert.ToDouble(args.Value) > balance)
                 {
-                    CustomValidator1.ErrorMessage = "Withdrawal amount exceed current amount";
+                    CustomValidator1.ErrorMessage = "Withdrawal amount exceed account balance";
                     args.IsValid = false;
                 }
                 

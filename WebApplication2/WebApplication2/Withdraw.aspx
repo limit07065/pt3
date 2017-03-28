@@ -4,7 +4,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Withdraw</title>
 </asp:Content>
-<asp:content id="Content2" contentplaceholderid="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:SqlDataSource ID="sqlAccount" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
+        SelectCommand="SELECT * FROM [account] WHERE ([owner] = @owner)">
+        <SelectParameters>
+            <asp:SessionParameter Name="owner" SessionField="id" Type="Int32" />
+        </SelectParameters>
+    </asp:SqlDataSource>
     <div class="row">
         <div class="col s6 offset-s3">
             <form>
@@ -18,24 +24,27 @@
                     <div class="row">
                         <div class="col s10 hoverable" style="margin: 10px">
                             <h4>
-                                <span>Current amount in account: </span>
-                                <%= String.Format(new System.Globalization.CultureInfo("ms-MY"), "{0:C}", Convert.ToDouble(Session["amount"]))%></h4>
+                                <span>Choose an account: </span>
+                            </h4>
+                            <asp:DropDownList ID="ddlAccount" runat="server" DataSourceID="sqlAccount" DataTextField="id"
+                                DataValueField="id">
+                            </asp:DropDownList>
                         </div>
                         <div class="input-field col s12">
-                            <asp:textbox id="tbAmount" runat="server">
-                            </asp:textbox>
+                            <asp:TextBox ID="tbAmount" runat="server">
+                            </asp:TextBox>
                             <label for="first_name">
                                 Amount to withdraw
                             </label>
-                            <asp:customvalidator id="CustomValidator1" runat="server" onservervalidate="AmountValidate"
-                                controltovalidate="tbAmount" errormessage="Invalid input" forecolor="Red" display="Dynamic">
-                            </asp:customvalidator>
+                            <asp:CustomValidator ID="CustomValidator1" runat="server" OnServerValidate="AmountValidate"
+                                ControlToValidate="tbAmount" ErrorMessage="Invalid input" ForeColor="Red" Display="Dynamic">
+                            </asp:CustomValidator>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <asp:linkbutton id="LinkButton1" runat="server" class="waves-effect waves-light btn"
-                                onclick="LinkButton1_Click">Submit</asp:linkbutton>
+                            <asp:LinkButton ID="LinkButton1" runat="server" class="waves-effect waves-light btn"
+                                OnClick="LinkButton1_Click">Submit</asp:LinkButton>
                         </div>
                     </div>
                 </li>
@@ -43,4 +52,4 @@
             </form>
         </div>
     </div>
-</asp:content>
+</asp:Content>

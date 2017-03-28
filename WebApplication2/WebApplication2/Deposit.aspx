@@ -5,6 +5,14 @@
     <title>Deposit</title>
 </asp:Content>
 <asp:content id="Content2" contentplaceholderid="ContentPlaceHolder1" runat="server">
+    <asp:SqlDataSource ID="sqlAccount" runat="server" 
+        ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
+        SelectCommand="SELECT * FROM [account] WHERE ([owner] = @owner)">
+        <SelectParameters>
+            <asp:SessionParameter Name="owner" SessionField="id" Type="Int32" />
+        </SelectParameters>
+    </asp:SqlDataSource>
+
     <div class="row">
         <div class="col s6 offset-s3">
             <form>
@@ -17,9 +25,14 @@
                     <div class="row">
                         <div class="col s10 hoverable" style="margin: 10px">
                             <h4>
-                                <span>Current amount in account: </span>
-                                <%= String.Format(new System.Globalization.CultureInfo("ms-MY"), "{0:C}", Convert.ToDouble(Session["amount"]))%></h4>
+                                <span>Choose an account: </span>
+                                </h4>
                         </div>
+                       <!-- <div class="input-field col s12">-->
+                            <asp:DropDownList ID="ddlAccount" runat="server" 
+                                DataSourceID="sqlAccount" DataTextField="id" DataValueField="id">
+                            </asp:DropDownList>
+                        <!--</div>-->
                         <div class="input-field col s12">
                             <asp:textbox id="tbAmount" runat="server">
                             </asp:textbox>

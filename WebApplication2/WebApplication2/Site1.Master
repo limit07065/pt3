@@ -23,18 +23,18 @@
     <form id="form1" runat="server">
     <nav>
     <div class="nav-wrapper">
-        <% if (Session["first_name"] == null) { %>
+        <% if (Session["full_name"] == null) { %>
              <a href="/Home.aspx" class="brand-logo"> <img alt="logo "  src="img/first-premiere-logo.gif" /></a>
         <% } else { %>
              <a href="/Details.aspx" class="brand-logo"> <img alt="logo "  src="img/first-premiere-logo.gif" /></a>
         <% } %>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
 
-        <% if (Session["first_name"] == null){ %>
+        <% if (Session["full_name"] == null){ %>
             <li><a href="/Home.aspx">Login</a></li>
             <li><a href="/register.aspx">Register</a></li>
         <% } else { %>
-            <li><a href="/details.aspx">Welcome, <%= Session["first_name"] %></a></li>
+            <li><a href="/details.aspx">Welcome, <%= Session["full_name"] %></a></li>
             <li><a href="/deposit.aspx">Deposit</a></li>
             <li><a href="/withdraw.aspx">Withdraw</a></li>
             <li><a href="/transfer.aspx">Transfer Amount </a></li>

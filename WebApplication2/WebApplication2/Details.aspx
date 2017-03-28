@@ -15,12 +15,10 @@
                 <li class="collection-item"><b>Account Number: </b>
                     <asp:label id="lblAccNo" runat="server"></asp:label>
                 </li>
-                <li class="collection-item"><b>First name: </b>
-                    <asp:label id="lblFirstName" runat="server"></asp:label>
+                <li class="collection-item"><b>Full name: </b>
+                    <asp:label id="lblFullName" runat="server"></asp:label>
                 </li>
-                <li class="collection-item"><b>Last name: </b>
-                    <asp:label id="lblLastName" runat="server"></asp:label>
-                </li>
+                
                 <li class="collection-item"><b>NRIC: </b>
                     <asp:label id="lblNRIC" runat="server"></asp:label>
                 </li>

@@ -15,17 +15,25 @@
             <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Select Transfer Type</a>
             <!-- Dropdown Structure -->
             <ul id='dropdown1' class='dropdown-content'>
-                <li ><a href="#!" >Innerbank Transfer</a></li>
-                <li class="divider"></li>
+                <li ><a href="#!" >Intrabank Transfer</a></li>
+                <!--<li class="divider"></li>
                 <li><a href="#!">Interbank Transfer</a></li>
-                <li ><a href="#!">Interbank Transfer Fast</a></li>
+                <li ><a href="#!">Interbank Transfer Fast</a></li>-->
                
             </ul>
              <div class="row">
                 <div class="input-field col s12">
-                    <input id="Text1" type="text" class="validate">
+                    <asp:TextBox ID="account_number" CssClass="validate"></asp:TextBox>
+                    
                     <label for="first_name">
                         Recipient Account Number</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <asp:TextBox ID="first_name" CssClass="validate"></asp:TextBox>
+                    <label for="first_name">
+                        Recipient Name</label>
                 </div>
             </div>
             <div class="row">
