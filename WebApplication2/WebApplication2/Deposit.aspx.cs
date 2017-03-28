@@ -59,7 +59,7 @@ namespace WebApplication2
                     cmd2.ExecuteNonQuery();
                 }
 
-                Response.Redirect("/Success.aspx");
+                Response.Redirect("/Result.aspx");
 
                 
 
