@@ -2,9 +2,9 @@
     CodeBehind="Details.aspx.cs" Inherits="WebApplication2.Details" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-<title>Details </title>
+    <title>Details </title>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:content id="Content2" contentplaceholderid="ContentPlaceHolder1" runat="server">
     <div class="row">
         <div class="col s10 offset-s1">
             <ul class="collection with-header">
@@ -12,59 +12,28 @@
                     <h4>
                         Details</h4>
                 </li>
-                First name :<asp:Label ID="first_name" runat="server" Text="Label"></asp:Label>
-                NRIC :<asp:Label ID="nric" runat="server" Text="Label"></asp:Label>
-                <table class="responsive bordered">
-                    <thead>
-                        <tr>
-                            <th data-field="id">
-                                Name
-                            </th>
-                            <th data-field="name">
-                                Item Name
-                            </th>
-                            <th data-field="price">
-                                Item Price
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                Alvin
-                            </td>
-                            <td>
-                                Eclair
-                            </td>
-                            <td>
-                                $0.87
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Alan
-                            </td>
-                            <td>
-                                Jellybean
-                            </td>
-                            <td>
-                                $3.76
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Jonathan
-                            </td>
-                            <td>
-                                Lollipop
-                            </td>
-                            <td>
-                                $7.00
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <li class="collection-item"><b>Account Number: </b>
+                    <asp:label id="lblAccNo" runat="server"></asp:label>
+                </li>
+                <li class="collection-item"><b>First name: </b>
+                    <asp:label id="lblFirstName" runat="server"></asp:label>
+                </li>
+                <li class="collection-item"><b>Last name: </b>
+                    <asp:label id="lblLastName" runat="server"></asp:label>
+                </li>
+                <li class="collection-item"><b>NRIC: </b>
+                    <asp:label id="lblNRIC" runat="server"></asp:label>
+                </li>
+                <li class="collection-item"><b>Reg Date: </b>
+                    <asp:label id="lblRegDate" runat="server"></asp:label>
+                </li>
+                <li class="collection-item"><b>Phone No: </b>
+                    <asp:label id="lblPhoneNo" runat="server"></asp:label>
+                </li>
+                <li class="collection-item"><b>Amount in account: </b>
+                    <asp:label id="lblAmount" runat="server"></asp:label>
+                </li>
             </ul>
         </div>
     </div>
-</asp:Content>
+</asp:content>
