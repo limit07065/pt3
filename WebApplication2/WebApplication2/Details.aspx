@@ -69,8 +69,7 @@
                     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="id"
                         DataSourceID="sqlSelected" OnRowDataBound="GridView1_RowDataBound">
                         <Columns>
-                            <asp:BoundField DataField="id" HeaderText="Transaction ID" InsertVisible="False"
-                                ReadOnly="True" SortExpression="id" />
+                             <asp:BoundField DataField="date" HeaderText="date" SortExpression="date" />
                             <asp:TemplateField HeaderText="Description">
                                 <ItemTemplate>
                                     <asp:Label ID="lblDescription" runat="server"></asp:Label>
@@ -91,7 +90,7 @@
                                     <asp:Label ID="lblBalance" runat="server"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:BoundField DataField="date" HeaderText="date" SortExpression="date" />
+                           
                         </Columns>
                     </asp:GridView>
                 </li>

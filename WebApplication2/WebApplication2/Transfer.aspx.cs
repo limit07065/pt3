@@ -22,7 +22,7 @@ namespace WebApplication2
         protected void lbSubmit_Click(object sender, EventArgs e)
         {
             string query1 = "SELECT account.balance, account.id FROM account INNER JOIN customer ON account.owner = customer.id WHERE account.id = @rID AND customer.full_name = @rName";
-            string query2 = "INSERT INTO [transaction] ([type], [source], [recipient], [amount], [source_balance], [recipient_balance], [date]) VALUES (2, @source, @recipient, @amount, @source_balance, @recipient_balance, @date)";
+            string query2 = "INSERT INTO [transaction] ([type], [source], [recipient], [amount], [source_balance], [recipient_balance], [date]) VALUES (3, @source, @recipient, @amount, @source_balance, @recipient_balance, @date)";
             string query3 = "UPDATE account SET balance = @balance WHERE id = @id";
 
             
@@ -36,7 +36,7 @@ namespace WebApplication2
                 string rID;
 
                 cmd.Parameters.AddWithValue("@rID", account_number.Text);
-                cmd.Parameters.AddWithValue("@rName", first_name.Text);
+                cmd.Parameters.AddWithValue("@rName", first_name.Text.ToUpper());
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -53,7 +53,7 @@ namespace WebApplication2
                 rBalance += Convert.ToDouble(amount.Text);
                 Session["balance"] = Convert.ToDouble(Session["balance"]) - Convert.ToDouble(amount.Text);
 
-                cmd.Parameters.AddWithValue("@source", Session["id"]);
+                cmd.Parameters.AddWithValue("@source", ddlAccount.SelectedValue);
                 cmd.Parameters.AddWithValue("@recipient", account_number.Text);
                 cmd.Parameters.AddWithValue("@amount", amount.Text);
                 cmd.Parameters.AddWithValue("@source_balance", Session["balance"]);

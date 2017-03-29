@@ -13,6 +13,24 @@ namespace WebApplication2 {
     public partial class Transfer {
         
         /// <summary>
+        /// sqlAccount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource sqlAccount;
+        
+        /// <summary>
+        /// ddlAccount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlAccount;
+        
+        /// <summary>
         /// account_number control.
         /// </summary>
         /// <remarks>

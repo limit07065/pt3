@@ -26,7 +26,7 @@ namespace WebApplication2
 
         protected void OnLoggingIn(object sender, System.Web.UI.WebControls.LoginCancelEventArgs e)
         {
-            string query = "SELECT account.id, customer.full_name, customer.nric, customer.registration_date, customer.phone, account.balance FROM customer INNER JOIN account ON customer.id = account.owner WHERE customer.username = @username AND customer.password = @password";
+            string query = "SELECT customer.id, customer.full_name, customer.nric, customer.registration_date, customer.phone, account.balance FROM customer INNER JOIN account ON customer.id = account.owner WHERE customer.username = @username AND customer.password = @password";
 
             TextBox UserName = Login1.FindControl("UserName") as TextBox;
             TextBox Password = Login1.FindControl("Password") as TextBox;

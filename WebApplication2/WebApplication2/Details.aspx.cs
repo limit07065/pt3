@@ -24,7 +24,7 @@ namespace WebApplication2
                     lblNRIC.Text = Session["nric"].ToString();
                     lblRegDate.Text = ((DateTime)Session["reg_date"]).ToString("dd-MMM-yyyy");
                     lblPhoneNo.Text = Session["phone"].ToString();
-                    lblAmount.Text = String.Format(new System.Globalization.CultureInfo("ms-MY"), "{0:C}", Convert.ToDouble(Session["balance"]));
+                   
 
                 }
             }
@@ -77,14 +77,14 @@ namespace WebApplication2
                         //fund transfer from user
                         if (Convert.ToInt32(rv["source"]) == userAccount)
                         {
-                            description = "Funds to \n" + (String)rv["recipient"];
+                            description = "Funds to \n" + rv["recipient"].ToString();
                             credit = "";
                             debit = rv["amount"].ToString();
                             balance = rv["source_balance"].ToString();
                         }
                         else if (Convert.ToInt32(rv["recipient"]) == userAccount)
                         {
-                            description = "Funds from \n" + (String)rv["source"];
+                            description = "Funds from \n" + rv["source"].ToString();
                             credit = rv["amount"].ToString();
                             debit = "";
                             balance = rv["recipient_balance"].ToString();
