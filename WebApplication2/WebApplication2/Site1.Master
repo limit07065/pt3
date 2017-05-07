@@ -40,6 +40,7 @@
             <li><a href="/withdraw.aspx">Withdraw</a></li>
             <li><a href="/transfer.aspx">Transfer Amount </a></li>
           <!--  <li><a href="/buy.aspx">Buy Online</a></li>-->
+            <li><a href="/barchart.aspx">Account History Chart </a></li>
             <li><asp:LinkButton id="lbLogout" runat="server" onclick="lbLogout_Click">Logout</asp:LinkButton></li>
         <% } %>
       </ul>
