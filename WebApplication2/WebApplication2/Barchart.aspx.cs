@@ -39,7 +39,7 @@ namespace WebApplication2
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     reader.Read();
-                    if (reader["debit"] != typeof(DBNull))
+                    if (reader["debit"] != DBNull.Value)
                         yValue[0] = Convert.ToDouble(reader["debit"]);
                 }
 
@@ -48,7 +48,7 @@ namespace WebApplication2
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     reader.Read();
-                    if(reader["credit"] != typeof(DBNull))
+                    if(reader["credit"] != DBNull.Value)
                         yValue[1] = Convert.ToDouble(reader["credit"]);                    
                 }
             }

@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -54,6 +55,7 @@
     <Content Include="App_Data\aspnetdb_log.ldf">
       <DependentUpon>ASPNETDB.MDF</DependentUpon>
     </Content>
+    <Content Include="Barchart.aspx" />
     <Content Include="Buy.aspx" />
     <Content Include="css\materialize\css\materialize.css" />
     <Content Include="css\materialize\css\materialize.min.css" />
@@ -68,7 +70,9 @@
     <Content Include="Register.aspx" />
     <Content Include="Result.aspx" />
     <Content Include="Transfer.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -79,6 +83,13 @@
     <Content Include="Withdraw.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Barchart.aspx.cs">
+      <DependentUpon>Barchart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Barchart.aspx.designer.cs">
+      <DependentUpon>Barchart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Buy.aspx.cs">
       <DependentUpon>Buy.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
